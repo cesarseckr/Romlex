@@ -1,0 +1,89 @@
+<div class="modal fade"  style="overflow-y: scroll;" id="mod_add_cliente" tabindex="-1" role="dialog" aria-labelledby="add" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+	  <div class="modal-content">
+      
+      <div class="modal-header">
+        <h5 class="modal-title">
+          <i class="mdi mdi-account-plus"></i>&nbsp; Registro de nuevo cliente
+        </h5>
+        <button type="button" class="close" id="close_registro_cliente" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      
+      <form id="form-mod-cliente" action="php/add_clientesE.php" modal="mod_add_cliente" nombre_form="Clientes" method="post" enctype="multipart/form-data">
+        <div class="modal-body">
+          <div class="form-row">
+            <div class="form-group col-md-12">
+                <div class="row">
+                  <div class="form-group col-sm-4">
+                    <label>Apellido Paterno:</label>
+                    <input type="text" class="form-control" placeholder="Apellido Paterno" name="apaterno" id="apaterno" data-validation="required" data-validation-error-msg="<p style='color:#B40431;'>Ingrese Apellido Paterno</p>">
+                  </div>
+                  
+                  <div class="form-group col-sm-4">
+                    <label>Apellido Materno:</label>
+                    <input type="text" class="form-control" placeholder="Apellido Materno" name="amaterno" id="amaterno">
+                  </div>
+                  
+                  <div class="form-group col-sm-4">
+                    <label>Nombre(s):</label>
+                    <input type="text" class="form-control" placeholder="Nombre(s)" name="nombre" id="nombre" data-validation="required" data-validation-error-msg="<p style='color:#B40431;'>Ingrese Nombre</p>">
+                  </div>
+                  
+                  <div class="form-group col-sm-4">
+                    <label>Telefono:</label>
+                    <input type="text" class="form-control" placeholder="telefono" name="telefono" id="telefono" data-validation="required" data-validation-error-msg="<p style='color:#B40431;'>Ingrese un Telefono</p>">
+                  </div>
+                  
+                  <div class="form-group col-sm-4">
+                    <label>Domicilio:</label>
+                    <input type="text" class="form-control" placeholder="Domicilio" name="domicilio" id="domicilio">
+                  </div>
+
+                  <div class="form-group col-sm-4">
+                    <label>Email:</label>
+                    <input type="text" class="form-control" placeholder="Email" name="email" id="email">
+                  </div>
+              </div>
+            </div>   
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn btn-primary btn-sm">
+            <i class="fa fa-play-circle"></i>Registrar
+          </button>
+          <button type="reset" class="btn btn-secondary btn-sm">
+            <i class="fa fa-eraser"></i>
+          </button>
+          <button  type="button" class="btn btn-danger" id="cancelar_registro_cliente">
+            <i class="fa fa-times"></i>Cerrar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).on('click', '#cancelar_registro_cliente',function(){
+    $('#mod_add_cliente').modal('toggle'); 
+  })
+  $(document).on('click', '#close_registro_cliente',function(){
+    $('#mod_add_cliente').modal('toggle'); 
+  })
+</script>
+
+<script>
+  $successMsg = $(".alert");
+  $.validate({
+    form : '#form-mod-cliente',
+    errorMessageClass: "error",
+    onSuccess: function(){
+      add("#form-mod-cliente");
+      $successMsg.show();
+      return false; 
+    }
+  });
+</script>
